@@ -5,7 +5,6 @@ export default function Carrinho() {
   const { id } = useParams();
   const [carrinho, setCarrinho] = useState<any>(null);
   const [livro, setLivro] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
@@ -23,7 +22,7 @@ export default function Carrinho() {
           const livroId = item.livroId;
           const responseLivro = await fetch(`http://localhost:3000/livro/${livroId}`);
           if (!responseLivro.ok) {
-            throw new Error(`HTTP error! status: ${responseLivro.status}`);
+            throw new Error(`Erro: ${responseLivro.status}`);
           }
           const data = response.json();
           setLivro(data);
@@ -33,17 +32,14 @@ export default function Carrinho() {
         if (error instanceof Error) {
           setError(error.message);
         } else {
-          setError('Ocorreu um erro ao buscar o carrinho.');
+          setError('Ocorreu um erro');
         }
-      } finally {
-        setLoading(false);
       }
     };
 
     detalheCarrinho();
   }, [id]);
 
-  if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
 
   return (
@@ -55,8 +51,7 @@ export default function Carrinho() {
             <h2>{livro.titulo}</h2>
             <p>{livro.resumo}</p>
             <p><strong>ISBN:</strong>{livro.ISBN}</p>
-            <p><strong>Author:</strong> {livro.autorNome}</p>
-            <p><strong>Price:</strong> ${livro.preco}</p>
+            <p><strong>Preço:</strong> ${livro.preco}</p>
           </div>
         ))
       ) : (

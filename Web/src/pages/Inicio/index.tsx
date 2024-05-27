@@ -2,16 +2,15 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Inicio() {
-  const url = 'http://localhost:3000/livro';
+  const apilivro = 'http://localhost:3000/livro';
   const [livros, setLivros] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const listarLivros = async () => {
       try {
-        const response = await fetch(url);
+        const response = await fetch(apilivro);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -21,17 +20,14 @@ export default function Inicio() {
         if (error instanceof Error) {
           setError(error.message);
         } else {
-          setError('Ocorreu um erro ao listar os livros.');
+          setError('Ocorreu um erro!');
         }
-      } finally {
-        setLoading(false);
       }
     };
 
     listarLivros();
   }, []);
 
-  if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
 
   return (
