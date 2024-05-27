@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 export default function Livro() {
   const { id } = useParams();
   const [livro, setLivro] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
