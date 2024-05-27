@@ -36,12 +36,12 @@ export class CriaLivroDTO {
   @IsNotEmpty({ message: 'A quantidade disponível não pode ser vazia.' })
   @IsNumber()
   @Min(0)
-  quantidadeDisponivel: number;
+  quantidade: number;
 
-  @IsNotEmpty({ message: 'O ID da Categoria não pode ser vazio.' })
-  categoriaId: string;
+  @IsNotEmpty({ message: 'A Categoria não pode ser vazia.' })
+  categoria: string;
 
-  @IsNotEmpty({ message: 'O ID do Autor não pode ser vazio.' })
-  autorId: string;
+  @IsNotEmpty({ message: 'O Autor não pode ser vazio.' })
+  autor: string;
 
 }

@@ -1,8 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UseInterceptors } from "@nestjs/common";
 import { CriaLivroDTO } from "./dto/CriaLivro.dto";
 import { AtualizaLivroDTO } from "./dto/AtualizaLivro.dto";
-import { AutorService } from "../autor/autor.service";
-import { CategoriaService } from "../categoria/categoria.service";
 import { LivroService } from "./livro.service";
 import { CacheInterceptor } from "@nestjs/cache-manager";
 
@@ -10,8 +8,6 @@ import { CacheInterceptor } from "@nestjs/cache-manager";
 export class LivroController {
   constructor(
     private readonly livroService: LivroService,
-    private readonly categoriaService: CategoriaService,
-    private readonly autorService: AutorService
   ) { }
 
   @Post()

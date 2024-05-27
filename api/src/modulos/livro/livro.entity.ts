@@ -1,7 +1,4 @@
-import { ItemPedidoEntity } from "../pedido/item-pedido.entity";
-import { AutorEntity } from "../autor/autor.entity";
-import { CategoriaEntity } from "../categoria/categoria.entity";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({ name: 'livros' })
 export class LivroEntity {
@@ -29,8 +26,8 @@ export class LivroEntity {
   @Column({ name: 'dataPublicacao', nullable: false, type: 'date' })
   dataPublicacao: Date;
 
-  @Column({ name: 'quantidade_disponivel', nullable: false })
-  quantidadeDisponivel: number;
+  @Column({ name: 'quantidade', nullable: false })
+  quantidade: number;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: string;
@@ -42,17 +39,10 @@ export class LivroEntity {
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: string;
 
-  @ManyToOne(() => AutorEntity,
-    (autor) => autor.livro,
-    { eager: true }
-  )
-  autor: AutorEntity;
+  @Column({ name: 'autor', length: 100, nullable: false })
+  autor: string;
 
-  @ManyToOne(() => CategoriaEntity,
-    (categoriaEntity) => categoriaEntity.livro
-  )
-  categoria: CategoriaEntity;
+  @Column({ name: 'categoria', length: 100, nullable: false })
+  categoria: string;
 
-  @OneToMany(() => ItemPedidoEntity, itemPedido => itemPedido.livro)
-  itensPedido: ItemPedidoEntity[];
 }

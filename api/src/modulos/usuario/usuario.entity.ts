@@ -1,6 +1,4 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { UsuarioEnderecoEntity } from "./usuario-endereco.entity";
-import { PedidoEntity } from "../pedido/pedido.entity";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Exclude } from "class-transformer";
 
 @Entity({ name: 'usuarios' })
@@ -34,15 +32,7 @@ export class UsuarioEntity {
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: string;
 
-  @OneToOne(
-    () => UsuarioEnderecoEntity,
-    (enderecoEntity) => enderecoEntity.usuario,
-    { cascade: true }
-  )
-  enderecos: UsuarioEnderecoEntity[];
-
-  @OneToMany(() => PedidoEntity, (pedido) => pedido.usuario)
-  pedidos: PedidoEntity[];
-
-
+  @Column({ name: 'endere3co', length: 200, nullable: false })
+  endereco: string;
+ 
 }

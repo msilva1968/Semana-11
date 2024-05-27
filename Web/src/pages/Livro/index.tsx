@@ -33,8 +33,6 @@ export default function Livro() {
       } else {
         setError('Ocorreu um erro ao adicionar o livro ao carrinho.');
       }
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -53,9 +51,7 @@ export default function Livro() {
         } else {
           setError('Ocorreu um erro ao buscar o livro.');
         }
-      } finally {
-        setLoading(false);
-      }
+      } 
     };
 
     detalheLivro();
@@ -73,7 +69,7 @@ export default function Livro() {
           <p>{livro.resumo}</p>
           <p><strong>ISBN:</strong>{livro.ISBN}</p>
           <p><strong>Author:</strong> {livro.autor.nome}</p>
-          <p><strong>Price:</strong> ${livro.preco}</p>
+          <p><strong>Preço:</strong> ${livro.preco}</p>
         </div>
       ) : (
         <p>Livro não encontrado.</p>
@@ -85,7 +81,7 @@ export default function Livro() {
       >{'< Voltar'}</button>
       <button
         onClick={() => { adicionarAoCarrinho() }}
-      >{'Adicionar Ao Carrinho'}</button>
+      >{'Adicionar no Carrinho'}</button>
     </div>
   );
 }

@@ -41,16 +41,13 @@ export default function Carrinho() {
   }, [id]);
 
   if (error) return <p>Erro: {error}</p>;
-
   return (
     <div>
-      <h1>Carrinho</h1>
+      <h1>Carrinho de Compras</h1>
       {livro ? (
         livro.map((livro: any) => (
           <div key={livro.id}>
             <h2>{livro.titulo}</h2>
-            <p>{livro.resumo}</p>
-            <p><strong>ISBN:</strong>{livro.ISBN}</p>
             <p><strong>Preço:</strong> ${livro.preco}</p>
           </div>
         ))

@@ -1,6 +1,4 @@
-import { Type } from "class-transformer";
-import { ArrayMinSize, IsArray, IsEmail, IsNotEmpty, IsNumberString, IsString, Matches, MinLength, ValidateNested } from "class-validator";
-import { EnderecoUsuarioDTO } from "../../autor/dto/enderecoUsuario.dto";
+import { IsEmail, IsNotEmpty, IsNumberString, IsString, Matches, MinLength} from "class-validator";
 import { EmailUnico } from "../validators/emailUnico.validator";
 
 export class CriarUsuarioDTO {
@@ -28,9 +26,6 @@ export class CriarUsuarioDTO {
   @IsNumberString(undefined, { message: 'O telefone deve conter apenas números.' })
   telefone: string;
 
-  @ValidateNested()
-  @IsArray()
-  @ArrayMinSize(1)
-  @Type(() => EnderecoUsuarioDTO)
-  enderecos: EnderecoUsuarioDTO[];
+  @IsNotEmpty({ message: 'Endereço não pode ser vazio.' })
+  endereco: string;
 }

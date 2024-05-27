@@ -2,7 +2,6 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { UsuarioEntity } from "./usuario.entity";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
-import { UsuarioEnderecoEntity } from "./usuario-endereco.entity";
 import { CriarUsuarioDTO } from "./dto/CriarUsuario.dto";
 import { ListaUsuarioDTO } from "./dto/ListaUsuario.dto";
 import { AtualizarUsuarioDTO } from "./dto/AtualizaUsuario.dto";
@@ -30,14 +29,6 @@ export class UsuarioService {
   async salvarUsuario(dadosUsuario: CriarUsuarioDTO) {
     const usuario = new UsuarioEntity();
     Object.assign(usuario, dadosUsuario as UsuarioEntity);
-
-    const enderecos = dadosUsuario.enderecos.map(endereco => {
-      const enderecoEntity = new UsuarioEnderecoEntity();
-      Object.assign(enderecoEntity, endereco as UsuarioEnderecoEntity);
-      return enderecoEntity;
-    });
-
-    usuario.enderecos = enderecos;
 
     return await this.salvar(usuario);
   }

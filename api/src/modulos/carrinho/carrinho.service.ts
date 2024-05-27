@@ -23,8 +23,8 @@ export class CarrinhoService {
         throw new NotFoundException(`O livro com o id ${itemCarrinho.livroId} não foi encontrado`);
       }
 
-      if (itemCarrinho.quantidade > livro.quantidadeDisponivel) {
-        throw new BadRequestException(`A quantidade solicitada (${itemCarrinho.quantidade}) é maior que a quantidade disponível (${livro.quantidadeDisponivel}) para o livro ${livro.titulo}`);
+      if (itemCarrinho.quantidade > livro.quantidade) {
+        throw new BadRequestException(`A quantidade solicitada (${itemCarrinho.quantidade}) é maior que a quantidade disponível (${livro.quantidade}) para o livro ${livro.titulo}`);
       }
 
     })
